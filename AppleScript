@@ -1,0 +1,97 @@
+(* 
+bit.ly/下載_鱫鰰macOS_RamDisk 
+GitHub.com/VirgoEros/macOScreateRamDisk/blob/master/AppleScript 
+*)
+---------------------------∞ RamDisk ∞----------------------------------------ON. 
+global RamDiskOption, createRamDisk, OpenScript, errmsg, errnbr
+global createRamDisk, RamDiskSize, RamDiskName, RamDiskImg, RamDisk, RamDiskShellCmd, TerminalNotifier, isDone, itemPath, itemProgress, errmsg, errnbr
+global OpenScript, OpenAppScript, TerminalNotifier, errmsg, errnbr
+
+on run
+	try
+		tell application "Finder" to set {button returned:RamDiskOption} to ¬
+			display dialog ("請嚫鱫的沝女鰰選擇 鱫鰰裸軟 選項唷💋") buttons ¬
+				{"鰎䲞RamDisk", "開啟鱫鰰RamDisk腳本", "退出"} with title ¬
+				{"鱫鰰RamDisk"}
+		if RamDiskOption is "鰎䲞RamDisk" then run script createRamDisk
+		if RamDiskOption is "開啟鱫鰰RamDisk腳本" then run script OpenScript
+		if RamDiskOption is "退出" then continue quit
+	on error errmsg number errnbr
+		if errnbr = -128 then continue quit
+		continue quit
+	end try
+end run
+
+script createRamDisk
+	try
+		tell application "Finder"
+			set RamDiskSize to ¬
+				display dialog {" 
+請嚫鱫的鰛鰇鱮美鱺沝女鰰鰎魞所需 RamDisk G數 唷💋 
+默認 4G 唷💋"} default answer ("4") buttons ¬
+					{"嗯哼。。好的唷💋"} default button ("嗯哼。。好的唷💋")
+			set RamDiskSize to {text returned of the result}
+			if RamDiskSize is "" then return continue quit
+			set RamDiskName to ¬
+				display dialog {" 
+請嚫鱫的鰛鰇鱮美鱺沝女鰰鰎魞RamDisk名稱唷💋 
+默認𩻟 鱫鰰RamDisk 唷💋"} default answer (quoted form of "鱫鰰RamDisk") buttons ¬
+					{"嗯哼。。好的唷💋"} default button ("嗯哼。。好的唷💋")
+			set RamDiskName to {text returned of the result}
+			if RamDiskName is "" then return continue quit
+			set RamDiskSize to {RamDiskSize * 1024 * 2048}
+			do shell script {"hdiutil attach -nomount ram://" & RamDiskSize}
+			set RamDiskImg to {the result}
+			set RamDisk to {the last text item of RamDiskImg}
+			set RamDiskShellCmd to {" newfs_hfs -v " & RamDiskName & " -s " & RamDisk as text}
+			do shell script (RamDiskShellCmd)
+			do shell script {" diskutil mount " & RamDisk}
+			{do shell script (" 
+cd /Volumes/" & RamDiskName & " ; 
+mkdir -p _應用快鯫 下載 文件 音樂 圖片 影片 ; 
+rm -rf ~/Library/Caches ; 
+ln -s ~/Library/Caches /Volumes/" & RamDiskName & "/_應用快鯫 ; 
+cd ;") with administrator privileges}
+		end tell
+		set isDone to false
+		set itemPath to (RamDiskName)
+		set itemProgress to "ps ax | grep -v grep | grep " & itemPath
+		repeat while isDone is false
+			try
+				do shell script itemProgress
+				if the result contains itemPath then
+					delay 1
+				else
+					set isDone to true
+				end if
+			on error
+				set isDone to true
+			end try
+		end repeat
+		if isDone is true then
+			display notification with title ("RamDisk已鰎䲞鰳唷💋")
+			continue quit
+		end if
+	on error errmsg number errnbr
+		if errnbr = -128 then continue quit
+		continue quit
+	end try
+end script
+------------------------ 開啟鱫鰰RamDisk腳本 ------------------------ON. 
+script OpenScript
+	try
+		set OpenAppScript to POSIX path of (path to me as text) & ("Contents/Resources/Scripts/main.scpt")
+		set OpenAppScript to quoted form of OpenAppScript
+		do shell script ("open " & OpenAppScript)
+		display notification with title ("腳本已開啟鰳唷💋")
+		continue quit
+	on error errmsg number errnbr
+		if errnbr = -128 then continue quit
+		continue quit
+	end try
+end script
+------------------------------∞ 鱫鰰RamDisk ∞----------------------------------------END. 
+
+
+-- 
+ 
