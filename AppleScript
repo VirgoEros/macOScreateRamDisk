@@ -1,5 +1,5 @@
 (* 
-bit.ly/下載_鱫鰰macOS_RAMdisk 
+bit.ly/鱫鰰macOS_RamDisk 
 GitHub.com/VirgoEros/macOScreateRamDisk/blob/master/AppleScript 
 *)
 ---------------------------∞ RamDisk ∞----------------------------------------ON. 
@@ -49,8 +49,9 @@ script createRamDisk
 			{do shell script (" 
 cd /Volumes/" & RamDiskName & " ; 
 mkdir -p _應用快鯫 下載 文件 音樂 圖片 影片 ; 
-rm -rf ~/Library/Caches ; 
-ln -s ~/Library/Caches /Volumes/" & RamDiskName & "/_應用快鯫 ; 
+cd ~/Library/Caches ;
+rm -rf Google ; 
+ln -fs /Volumes/" & RamDiskName & "/_應用快鯫 ~/Library/Caches/Google ; 
 cd ;") with administrator privileges}
 		end tell
 		set isDone to false
@@ -94,4 +95,3 @@ end script
 
 
 -- 
- 
