@@ -1,5 +1,5 @@
 (* 
-bit.ly/鱫鰰macOS_RamDisk 
+bit.ly/下載_鱫鰰macOS_RAMdisk  
 GitHub.com/VirgoEros/macOScreateRamDisk/blob/master/AppleScript 
 *)
 ---------------------------∞ RamDisk ∞----------------------------------------ON. 
